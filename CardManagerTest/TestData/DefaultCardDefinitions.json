@@ -1,0 +1,20 @@
+[
+  {
+    "Id":"DEFAULT_ONE",
+    "Name": "Default One",
+    "Rarity": "R",
+    "Element": "Earth",
+    "Slot": "Lunar",
+    "LevelCurveId": "DEFAULT_LEVEL",
+    "CostCurveId": "DEFAULT_COST"
+  },
+  {
+    "Id":"DEFAULT_TWO",
+    "Name": "Default Two",
+    "Rarity": "R",
+    "Element": "Wind",
+    "Slot": "Solar",
+    "LevelCurveId": "DEFAULT_LEVEL",
+    "CostCurveId": "DEFAULT_COST"
+  }
+]

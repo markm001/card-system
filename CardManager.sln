@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardManager", "CardManager\CardManager.csproj", "{0FED133D-D5B8-413D-88D0-AF771E236BA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardManagerTest", "CardManagerTest\CardManagerTest.csproj", "{3D3A1AA2-F2F9-4F44-B88B-0B0A34DB019E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FED133D-D5B8-413D-88D0-AF771E236BA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FED133D-D5B8-413D-88D0-AF771E236BA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FED133D-D5B8-413D-88D0-AF771E236BA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FED133D-D5B8-413D-88D0-AF771E236BA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D3A1AA2-F2F9-4F44-B88B-0B0A34DB019E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D3A1AA2-F2F9-4F44-B88B-0B0A34DB019E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D3A1AA2-F2F9-4F44-B88B-0B0A34DB019E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D3A1AA2-F2F9-4F44-B88B-0B0A34DB019E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

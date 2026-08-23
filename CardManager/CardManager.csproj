@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+        <None Include="..\README.md"
+              Pack="true"
+              PackagePath="\"/>
+    </ItemGroup>
+    
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+
+        <PackageId>CCAT.Gacha.CardSystem</PackageId>
+
+        <Authors>MM</Authors>
+        <PackageDescription>Card System</PackageDescription>
+        <Description>Card System.</Description>
+        <RepositoryUrl>https://github.com/markm001/card-system</RepositoryUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+
+        <Title>CCAT.Common.CardSystem</Title>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="CCAT.Common.Utils" Version="1.0.3" />
+      <PackageReference Include="ccat.gacha.inventorymanager" Version="1.0.2" />
+      <PackageReference Include="ccat.gacha.levelmanager" Version="0.0.6" />
+    </ItemGroup>
+
+</Project>
