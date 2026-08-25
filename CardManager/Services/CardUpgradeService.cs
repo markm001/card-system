@@ -40,4 +40,33 @@ public class CardUpgradeService(
 
         return true;
     }
+
+    public CardUpgradeInfo GetCardUpgradeInfo(string instanceId)
+    {
+        OwnedCard card = cardStateService.Get(instanceId);
+
+
+        CardDefinition definition = cardDefinitionRepository.Get(card.CardId) 
+                                    ?? throw new InvalidOperationException($"Card Definition for '{card.CardId}' was not found.");
+        LevelCurve levelCurve = levelCurveRepository.Get(definition.LevelCurveId);
+
+        if(card.Progress.Level == levelCurve.MaxLevel)
+            return new CardUpgradeInfo(
+                card.Progress.Level,
+                levelCurve.MaxLevel,
+                card.Progress.Experience,
+                0,
+                []
+            );
+
+        CostCurve costCurve = costCurveRepository.Get(definition.CostCurveId);
+        
+        return new CardUpgradeInfo(
+            card.Progress.Level,
+            levelCurve.MaxLevel,
+            card.Progress.Experience,
+            levelCurve.GetExperienceRequired(card.Progress.Level),
+            costCurve.GetCostRequired(card.Progress.Level)
+        );
+    }
 }

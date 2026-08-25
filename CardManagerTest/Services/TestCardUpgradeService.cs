@@ -39,7 +39,7 @@ public class TestCardUpgradeService
 
         var costCurve = new CostCurve(CostCurveId, [
             new CostRequirement(1, [ new ResourceCost("GOLD", 5) ]),
-            new CostRequirement(2, [ new ResourceCost("GOLD", 10) ]),
+            new CostRequirement(2, [ new ResourceCost("GOLD", 10), new ResourceCost("SHARD", 50) ]),
             new CostRequirement(3, [ new ResourceCost("GOLD", 20) ]),
         ]);
         var mockCostCurve = new Mock<ICostCurveRepository>();
@@ -124,5 +124,48 @@ public class TestCardUpgradeService
         _mockStateService.Verify(x => x.Update(_ownedCard), Times.Never);
         
         Assert.IsFalse(_upgradeService.LevelUp(InstanceId, experience));
+    }
+
+    [TestMethod]
+    public void GetCardUpgradeInfo_CardIsMaxLevel_ReturnEmptyResourceCost()
+    {
+        var cardLevel = 4;
+        _ownedCard.ApplyLevelProgress(new LevelProgress(cardLevel, 0));
+        
+        _mockStateService.Setup(x => x.Get(InstanceId))
+            .Returns(_ownedCard);
+        
+        var actual = _upgradeService.GetCardUpgradeInfo(_ownedCard.InstanceId);
+        
+        Assert.AreEqual(cardLevel, actual.CurrentLevel);
+        Assert.AreEqual(cardLevel, actual.MaxLevel);
+        Assert.AreEqual(0, actual.CurrentExperience);
+        Assert.AreEqual(0, actual.MaxExperienceForLevel);
+        Assert.IsEmpty(actual.MaterialCost);
+    }
+    
+    [TestMethod]
+    public void GetCardUpgradeInfo_CardIsNotMaxLevel_ReturnResourceCost()
+    {
+        const int cardLevel = 2;
+        const int expectedExp = 10;
+        _ownedCard.ApplyLevelProgress(new LevelProgress(cardLevel, expectedExp));
+        
+        _mockStateService.Setup(x => x.Get(InstanceId))
+            .Returns(_ownedCard);
+        
+        var actual = _upgradeService.GetCardUpgradeInfo(_ownedCard.InstanceId);
+        
+        
+        Assert.AreEqual(cardLevel, actual.CurrentLevel);
+        Assert.AreEqual(_levelCurve.MaxLevel, actual.MaxLevel);
+        Assert.AreEqual(expectedExp, actual.CurrentExperience);
+        Assert.AreEqual(_levelCurve.Requirements[1].ExperienceRequired, actual.MaxExperienceForLevel);
+        
+        Assert.HasCount(2, actual.MaterialCost);
+        Assert.AreEqual("GOLD", actual.MaterialCost[0].ResourceId);
+        Assert.AreEqual(10, actual.MaterialCost[0].Amount);
+        Assert.AreEqual("SHARD", actual.MaterialCost[1].ResourceId);
+        Assert.AreEqual(50, actual.MaterialCost[1].Amount);
     }
 }
