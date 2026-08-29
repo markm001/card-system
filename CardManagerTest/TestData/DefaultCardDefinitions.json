@@ -5,8 +5,10 @@
     "Rarity": "R",
     "Element": "Earth",
     "Slot": "Lunar",
+    "Sprite": "SPRITE.png",
     "LevelCurveId": "DEFAULT_LEVEL",
-    "CostCurveId": "DEFAULT_COST"
+    "CostCurveId": "DEFAULT_COST",
+    "StatCurveId": "DEFAULT_R"
   },
   {
     "Id":"DEFAULT_TWO",
@@ -14,7 +16,9 @@
     "Rarity": "R",
     "Element": "Wind",
     "Slot": "Solar",
+    "Sprite": "SPRITE.png",
     "LevelCurveId": "DEFAULT_LEVEL",
-    "CostCurveId": "DEFAULT_COST"
+    "CostCurveId": "DEFAULT_COST",
+    "StatCurveId": "DEFAULT_R"
   }
 ]

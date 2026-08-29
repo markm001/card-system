@@ -5,6 +5,7 @@
     "experience": 150,
     "rank": 2,
     "isFavourite": true,
+    "isNew": true,
     "slots": [
       "FIRE_MATERIA",
       "CRITICAL_MATERIA"

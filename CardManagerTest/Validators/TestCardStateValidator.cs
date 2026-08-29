@@ -14,7 +14,7 @@ public class TestCardStateValidator
         
         IReadOnlyDictionary<string, CardState> cardStates = new Dictionary<string, CardState>
         {
-            { expectedUuid, new CardState(10, 100, 2, true, []) }
+            { expectedUuid, new CardState(10, 100, 2, true, true, []) }
         };
         
         var inventory = new Inventory<UniqueItem>([

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "DEFAULT_R",
+    "stats": [
+      { "level": 1, "ATK": 100, "DEF": 100, "HP": 1000, "DEX": 100 },
+      { "level": 2, "ATK": 120, "DEF": 115, "HP": 1200, "DEX": 102 },
+      { "level": 3, "ATK": 145, "DEF": 135, "HP": 1450, "DEX": 105 },
+      { "level": 4, "ATK": 175, "DEF": 160, "HP": 1750, "DEX": 108 },
+      { "level": 5, "ATK": 210, "DEF": 190, "HP": 2100, "DEX": 112 }
+    ]
+  },
+  {
+    "id": "DEFAULT_SR",
+    "stats": [
+      { "level": 1, "ATK": 125, "DEF": 125, "HP": 1250, "DEX": 102 },
+      { "level": 2, "ATK": 155, "DEF": 150, "HP": 1550, "DEX": 105 },
+      { "level": 3, "ATK": 190, "DEF": 180, "HP": 1900, "DEX": 109 },
+      { "level": 4, "ATK": 230, "DEF": 215, "HP": 2300, "DEX": 113 },
+      { "level": 5, "ATK": 275, "DEF": 255, "HP": 2750, "DEX": 118 }
+    ]
+  },
+  {
+    "id": "DEFAULT_SSR",
+    "stats": [
+      { "level": 1, "ATK": 150, "DEF": 150, "HP": 1500, "DEX": 105 },
+      { "level": 2, "ATK": 190, "DEF": 185, "HP": 1900, "DEX": 109 },
+      { "level": 3, "ATK": 235, "DEF": 225, "HP": 2350, "DEX": 114 },
+      { "level": 4, "ATK": 285, "DEF": 270, "HP": 2850, "DEX": 120 },
+      { "level": 5, "ATK": 345, "DEF": 325, "HP": 3450, "DEX": 126 }
+    ]
+  }
+]

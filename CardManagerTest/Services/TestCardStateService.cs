@@ -12,12 +12,12 @@ public class TestCardStateService
     public void TestCardStateService_Operations()
     {
         var itemState = new ItemState(10, 100, []);
-        var expectedState = new CardState(itemState, 3, true);
+        var expectedState = new CardState(itemState, 3, true, true);
         var expectedUuid = "UUID2";
 
         Dictionary<string, CardState> states = new Dictionary<string, CardState>
         {
-            { "UUID1", new CardState(itemState, 1, false) }
+            { "UUID1", new CardState(itemState, 1, false, true) }
         };
 
         var service = new StateService<CardState>(states);
@@ -48,7 +48,7 @@ public class TestCardStateService
         
         var cardStateService = new StateService<CardState>(new Dictionary<string, CardState>
             {
-                { instanceId, new CardState(itemState, 3, true)}
+                { instanceId, new CardState(itemState, 3, true, true)}
             }
         );
 
@@ -61,5 +61,6 @@ public class TestCardStateService
         Assert.AreEqual(itemId, actual.CardId);
         Assert.AreEqual(3, actual.Rank);
         Assert.IsTrue(actual.IsFavourite);
+        Assert.IsTrue(actual.IsNew);
     } 
 }

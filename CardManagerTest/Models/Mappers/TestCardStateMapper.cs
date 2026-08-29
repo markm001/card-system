@@ -20,7 +20,8 @@ public class TestCardStateMapper
             expectedLevel, 
             expectedExperience, 
             expectedRank, 
-            true, 
+            true,
+            true,
             expectedSlots
         );
     
@@ -31,6 +32,7 @@ public class TestCardStateMapper
         Assert.AreEqual(expectedExperience,states["UUID"].ItemState.Experience);
         Assert.AreEqual(expectedRank,states["UUID"].Rank);
         Assert.IsTrue(states["UUID"].IsFavourite);
+        Assert.IsTrue(states["UUID"].IsNew);
         
         CollectionAssert.AreEqual(expectedSlots, states["UUID"].ItemState.Slots.ToList());
     }
@@ -45,7 +47,7 @@ public class TestCardStateMapper
         List<string> expectedSlots = ["SLOT_1","SLOT_2"];
 
         Dictionary<string, CardState> states =  new Dictionary<string, CardState> {
-            { expectedUuid, new CardState(expectedLevel, expectedExperience, expectedRank, false, expectedSlots) }
+            { expectedUuid, new CardState(expectedLevel, expectedExperience, expectedRank, false, false, expectedSlots) }
         };
 
         IReadOnlyList<CardStateData> actual = CardStateMapper.ToCardStateData(states);
@@ -56,6 +58,7 @@ public class TestCardStateMapper
         Assert.AreEqual(expectedExperience,actual[0].Experience);
         Assert.AreEqual(expectedRank,actual[0].Rank);
         Assert.IsFalse(actual[0].IsFavourite);
+        Assert.IsFalse(actual[0].IsNew);
         CollectionAssert.AreEqual(expectedSlots,actual[0].Slots.ToList());
     }
 

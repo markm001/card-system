@@ -30,6 +30,10 @@
       <Content Include="TestData\DefaultCardDefinitions.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+      <None Remove="TestData\DefaultStatCurves.json" />
+      <Content Include="TestData\DefaultStatCurves.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

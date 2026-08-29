@@ -7,6 +7,9 @@ public sealed record CardDefinition(
     Element Element,
     Slot Slot,
     
+    string Sprite,
+    
     string LevelCurveId,
-    string CostCurveId
+    string CostCurveId,
+    string StatCurveId
 );

@@ -25,6 +25,7 @@ public sealed class CardStateService(
 
         card.SetRank(cardState.Rank);
         card.SetFavourite(cardState.IsFavourite);
+        card.SetNew(cardState.IsNew);
 
         return card;
     }
@@ -38,6 +39,7 @@ public sealed class CardStateService(
             card.Progress.Experience,
             card.Rank,
             card.IsFavourite,
+            card.IsNew,
             card.Slots);
 
         stateService.Update(card.InstanceId, state);
@@ -52,6 +54,7 @@ public sealed class CardStateService(
             card.Progress.Experience,
             card.Rank,
             card.IsFavourite,
+            card.IsNew,
             card.Slots);
         
         stateService.Add(card.InstanceId, state);

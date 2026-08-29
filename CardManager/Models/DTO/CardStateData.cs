@@ -6,5 +6,6 @@ public sealed record CardStateData(
     int Experience,
     int Rank,
     bool IsFavourite,
+    bool IsNew,
     IReadOnlyList<string> Slots
 );

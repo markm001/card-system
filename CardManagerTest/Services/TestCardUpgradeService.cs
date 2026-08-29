@@ -14,6 +14,7 @@ public class TestCardUpgradeService
     private const string CardId = "TEST";
     private const string CostCurveId = "DEFAULT_COST";
     private const string LevelCurveId = "DEFAULT_LEVEL";
+    private const string StatCurveId = "DEFAULT_R";
 
     private OwnedCard _ownedCard = null!;
     private LevelCurve _levelCurve = null!;
@@ -32,7 +33,7 @@ public class TestCardUpgradeService
         _mockStateService.Setup(x => x.Get(InstanceId))
             .Returns(_ownedCard);
         
-        var cardDefinition = new CardDefinition(CardId, "Test", Rarity.R, Element.Earth, Slot.Lunar, LevelCurveId, CostCurveId);
+        var cardDefinition = new CardDefinition(CardId, "Test", Rarity.R, Element.Earth, Slot.Lunar, "SPRITE", LevelCurveId, CostCurveId, StatCurveId);
         var mockDefinition = new Mock<ICardDefinitionRepository>();
         mockDefinition.Setup(x => x.Get(CardId))
             .Returns(cardDefinition);

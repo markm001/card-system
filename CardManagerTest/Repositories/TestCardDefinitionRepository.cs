@@ -20,6 +20,8 @@ public class TestCardDefinitionRepository
         Assert.AreEqual(Rarity.R, actual.Rarity);
         Assert.AreEqual(Element.Earth, actual.Element);
         Assert.AreEqual(Slot.Lunar, actual.Slot);
+        Assert.AreEqual("SPRITE.png", actual.Sprite);
+        Assert.AreEqual("DEFAULT_R", actual.StatCurveId);
     }
     
     [TestMethod]

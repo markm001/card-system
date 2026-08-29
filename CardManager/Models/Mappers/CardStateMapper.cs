@@ -8,7 +8,7 @@ public static class CardStateMapper
     {
         return cardStateData.ToDictionary(
             i => i.InstanceId,
-            i => new CardState(i.Level, i.Experience, i.Rank, i.IsFavourite ,i.Slots)
+            i => new CardState(i.Level, i.Experience, i.Rank, i.IsFavourite, i.IsNew ,i.Slots)
         );
     }
     
@@ -22,6 +22,7 @@ public static class CardStateMapper
                 pair.Value.ItemState.Experience,
                 pair.Value.Rank,
                 pair.Value.IsFavourite,
+                pair.Value.IsNew,
                 pair.Value.ItemState.Slots))
             .ToList();
     }
