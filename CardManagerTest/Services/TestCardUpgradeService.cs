@@ -33,7 +33,7 @@ public class TestCardUpgradeService
         _mockStateService.Setup(x => x.Get(InstanceId))
             .Returns(_ownedCard);
         
-        var cardDefinition = new CardDefinition(CardId, "Test", Rarity.R, Element.Earth, Slot.Lunar, "SPRITE", LevelCurveId, CostCurveId, StatCurveId);
+        var cardDefinition = new CardDefinition(CardId, "Test", Rarity.R, Element.Earth, Slot.Lunar, LevelCurveId, CostCurveId, StatCurveId);
         var mockDefinition = new Mock<ICardDefinitionRepository>();
         mockDefinition.Setup(x => x.Get(CardId))
             .Returns(cardDefinition);

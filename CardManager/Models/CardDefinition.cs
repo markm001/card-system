@@ -6,9 +6,6 @@ public sealed record CardDefinition(
     Rarity Rarity,
     Element Element,
     Slot Slot,
-    
-    string Sprite,
-    
     string LevelCurveId,
     string CostCurveId,
     string StatCurveId
