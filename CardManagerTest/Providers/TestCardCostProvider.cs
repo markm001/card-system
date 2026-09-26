@@ -45,4 +45,36 @@ public class TestCardCostProvider
         Assert.AreEqual(shards, actualCost[0]);
         Assert.AreEqual(gold, actualCost[1]);
     }
+    
+    [TestMethod]
+    public void GetCost_MaxLevel_ThrowsException()
+    {
+        ResourceCost shards = new ResourceCost("SHARDS", 50);
+
+        CostRequirement oneRequirement = new CostRequirement(1, [shards]);
+        
+        CostCurve costCurve = new CostCurve("TEST", [oneRequirement]);
+        CardCostProvider cardCostProvider = new CardCostProvider(costCurve);
+
+        LevelProgress progress = new LevelProgress(2, 0);
+        
+        IReadOnlyList<ResourceCost> actualCost = cardCostProvider.GetCost(progress);
+        
+        Assert.IsEmpty(actualCost);
+    }
+    
+    [TestMethod]
+    public void GetCost_NegativeLevel_ThrowsException()
+    {
+        ResourceCost shards = new ResourceCost("SHARDS", 50);
+
+        CostRequirement oneRequirement = new CostRequirement(1, [shards]);
+        
+        CostCurve costCurve = new CostCurve("TEST", [oneRequirement]);
+        CardCostProvider cardCostProvider = new CardCostProvider(costCurve);
+
+        LevelProgress progress = new LevelProgress(-2, 0);
+
+        Assert.Throws<ArgumentOutOfRangeException>(() => cardCostProvider.GetCost(progress));
+    }
 }

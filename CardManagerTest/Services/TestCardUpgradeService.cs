@@ -1,8 +1,11 @@
 using CardManager.Models;
 using CardManager.Repositories;
 using CardManager.Services;
+using InventoryManager.Core.Models;
+using InventoryManager.Core.Services;
 using LevelManager.Core.Models;
 using LevelManager.Core.Repositories;
+using LevelManager.Core.Services;
 using Moq;
 
 namespace CardManagerTest.Services;
@@ -75,7 +78,7 @@ public class TestCardUpgradeService
     public void LevelUp_CanAfford_ReturnsTrue()
     {
         // Arrange
-        const int experience = 65;
+        const int experience = 6500;
         _mockResourceCost.Setup(
                 x => x.CanAfford(It.IsAny<IReadOnlyList<ResourceCost>>()))
             .Returns(true);
@@ -95,12 +98,12 @@ public class TestCardUpgradeService
         );
         
         _mockStateService.Verify(x => x.Update(_ownedCard), Times.Once);
-        
+
         Assert.IsTrue(_upgradeService.LevelUp(InstanceId, experience));
     }
     
     [TestMethod]
-    public void LevelUp_CannotAfford_ReturnsTrue()
+    public void LevelUp_CannotAfford_ReturnsFalse()
     {
         // Arrange
         const int experience = 65;
@@ -168,5 +171,43 @@ public class TestCardUpgradeService
         Assert.AreEqual(10, actual.MaterialCost[0].Amount);
         Assert.AreEqual("SHARD", actual.MaterialCost[1].ResourceId);
         Assert.AreEqual(50, actual.MaterialCost[1].Amount);
+    }
+
+    [TestMethod]
+    public void LevelUp_UpgradeCardBeyondMaxLevel_ReturnsFalse()
+    {
+        // Arrange
+        var uniqueItem = new UniqueItem(InstanceId, new InventoryItem(CardId, false));
+        var uniqueInventoryService = new UniqueInventoryService(new Inventory<UniqueItem>([uniqueItem]));
+        
+        var cardStates = new Dictionary<string, CardState>
+        {
+            { InstanceId, new CardState(3, 0, 1, false, false, []) }
+        };
+        var stateService = new StateService<CardState>(cardStates);
+        var cardStateService = new CardStateService(uniqueInventoryService, stateService);
+
+        var card = cardStateService.Get(InstanceId);
+
+        Assert.AreEqual(3, card.Progress.Level);
+        Assert.AreEqual(0, card.Progress.Experience);
+        
+        // Act
+        var cardLevelService = new CardLevelService(new LevelService());
+        cardLevelService.AddExperience(card, _levelCurve, 400);
+        
+        Assert.AreEqual(4, card.Progress.Level);
+        Assert.AreEqual(0, card.Progress.Experience);
+
+        cardStateService.Update(card);
+
+        // Assert
+        var updatedCard = cardStateService.Get(InstanceId);
+        
+        Assert.AreEqual(4, updatedCard.Progress.Level);
+        Assert.AreEqual(0, updatedCard.Progress.Experience);
+
+        Assert.IsFalse(_upgradeService.LevelUp(InstanceId, 10000));
+        Assert.IsFalse(_upgradeService.LevelUp(InstanceId, 10000));
     }
 }
